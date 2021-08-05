@@ -1,0 +1,12 @@
+version: '3'
+services:
+  pipeline:
+    build:
+      dockerfile: aws.dockerfile
+      context: ./
+    volumes:
+      - ${PWD}:/pipeline
+    working_dir: /pipeline
+    environment: 
+      - AWS_ACCESS_KEY_ID=${TF_VAR_aws_access_key_id}
+      - AWS_SECRET_ACCESS_KEY=${TF_VAR_aws_secret_access_key}

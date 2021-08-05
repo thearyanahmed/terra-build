@@ -1,0 +1,23 @@
+name: Provision AWS Infrastructure
+
+on:
+  push:
+    branches:
+      - deploy
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set envs
+      run: printf "TF_VAR_aws_access_key_id=${{ secrets.AWS_ACCESS_ID }}\nTF_VAR_aws_secret_access_key=${{ secrets.AWS_ACCESS_SECRET }}" >> .env
+
+    - name: Cating vars
+      run: cat .env
+    - name: Build docker file
+      run: docker-compose build
+
+    - name: Check running containers
+      run: docker-compose up
