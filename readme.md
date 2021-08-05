@@ -1,6 +1,6 @@
-# tf build
+# terra build
 
-tf build uses github action to trigger infrastructure provisioning using terraform and saves the terraform state into 
+terra build uses github action to trigger infrastructure provisioning using terraform and saves the terraform state into 
 aws s3.
 
 ### Getting ready

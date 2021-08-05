@@ -1,5 +1,7 @@
 terraform {
 
+  # if you don't want to store the state on s3, remove the 'backend' block
+  # or if you want to keep it, change the bucket name and region and add if anything else is necessary.
   backend "s3" {
     bucket = "tf-statelock"
     key = "tf/tf.state"
@@ -19,7 +21,8 @@ provider "aws" {
   region  = "ap-south-1"
 }
 
-resource "aws_vpc" "tf_build" {       # Creating VPC here
+# demo purpose
+resource "aws_vpc" "terra_build" {      # Creating VPC here
    cidr_block       = "10.0.0.0/24"     # Defining the CIDR block use 10.0.0.0/24 for demo
    instance_tenancy = "default"
 
@@ -27,3 +30,5 @@ resource "aws_vpc" "tf_build" {       # Creating VPC here
         Name = "tf_zero"
     }
 }
+
+# add your tf config here
